@@ -1,0 +1,61 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Setup 'clk50M'
+Slack : -6.599
+TNS   : -595.278
+
+Type  : Setup 'clk25M'
+Slack : 12.223
+TNS   : 0.000
+
+Type  : Setup 'clk10K'
+Slack : 13.255
+TNS   : 0.000
+
+Type  : Setup 'altera_reserved_tck'
+Slack : 42.915
+TNS   : 0.000
+
+Type  : Hold 'clk50M'
+Slack : 0.352
+TNS   : 0.000
+
+Type  : Hold 'altera_reserved_tck'
+Slack : 0.452
+TNS   : 0.000
+
+Type  : Hold 'clk10K'
+Slack : 0.453
+TNS   : 0.000
+
+Type  : Hold 'clk25M'
+Slack : 0.453
+TNS   : 0.000
+
+Type  : Recovery 'altera_reserved_tck'
+Slack : 47.894
+TNS   : 0.000
+
+Type  : Removal 'altera_reserved_tck'
+Slack : 1.379
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'clk50M'
+Slack : 0.349
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'clk25M'
+Slack : 19.753
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'altera_reserved_tck'
+Slack : 49.400
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'clk10K'
+Slack : 49999.780
+TNS   : 0.000
+
+------------------------------------------------------------

@@ -1,0 +1,58 @@
+module vga_signal (
+	input wire clk, // 50 MHz, 20ns
+	output reg vga_hsync,
+	output reg vga_vsync,
+	output reg [2:0]vga_rgb
+);
+
+// settings VGA 648x480 60Hz
+reg [9:0]hsync_pulse = 10'd95;
+reg [9:0]hsync_end = 10'd799;
+reg [9:0]hsync_act_begin = 10'd143;
+reg [9:0]hsync_act_end = 10'd783;
+reg [9:0]vsync_pulse = 10'd1;
+reg [9:0]vsync_end = 10'd524;
+reg [9:0]vsync_act_begin = 10'd34;
+reg [9:0]vsync_act_end = 10'd514;
+
+reg [9:0]hcount = 10'd0;
+reg [9:0]vcount = 10'd0;
+wire hcount_rst;
+wire vcount_rst;
+
+assign hcount_rst = (hcount == hsync_end);
+assign vcount_rst = (vcount == vsync_end);
+
+wire hact;
+wire vact;
+wire data_act;
+assign hact = ((hcount >= hsync_act_begin) && (hcount < hsync_act_end));
+assign vact = ((vcount >= vsync_act_begin) && (vcount < vsync_act_end));
+assign data_act = hact && vact;
+				
+reg vga_clk; // 25 MHz, 40ns
+
+always @(posedge clk)
+begin
+	vga_clk = ~vga_clk;
+end
+
+always @(posedge vga_clk)
+begin
+	if (hcount_rst) hcount <= 10'd0;
+	else hcount <= hcount + 10'd1;
+
+	if (hcount_rst) vcount <= vcount + 10'd1;
+	if (vcount_rst) vcount <= 10'd0;
+
+	if (hcount < hsync_pulse) vga_hsync <= 0;
+	else vga_hsync <= 1;
+
+	if (vcount < vsync_pulse) vga_vsync <= 0;
+	else vga_vsync <= 1;
+
+	if (data_act) vga_rgb <= 3'b111;
+	else vga_rgb <= 3'b000;
+end
+
+endmodule
