@@ -101,7 +101,7 @@ memory_controller mc(
 	.nreset(nreset),
 	.addr(bus_addr),
 	.data_read(bus_data_read),
-	.data_read_size(9'd1),
+	.data_read_size(9'd0),
 	.data_write(bus_data_write),
 	.data_write_size(9'd1),
 	.request(bus_ram_request),
